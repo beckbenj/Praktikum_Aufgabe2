@@ -16,7 +16,8 @@ public class listDirectories extends AppCompatActivity {
 
     private final String SCREENSHOT_DIR = "Screenshots";
     private final String CAMERA_DIR = "Camera";
-    private String[] titles = {SCREENSHOT_DIR, CAMERA_DIR};
+    private final String DIRECTORY_DIR = "Other Directory";
+    private String[] titles = {SCREENSHOT_DIR, CAMERA_DIR,DIRECTORY_DIR };
     //Wird spaeter gebraucht
     private String pathScreenshots = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
     private String pathCamera = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
@@ -36,6 +37,7 @@ public class listDirectories extends AppCompatActivity {
         ArrayAdapter<String> myList = new ArrayAdapter<String>(this, R.layout.list_content, titles);
         //ArrayAdapter mit ListView verknuepfen
         list.setAdapter(myList);
+        list.setBackgroundResource(R.drawable.list_view_shape);
 
     }
 

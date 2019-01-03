@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class showImage extends AppCompatActivity {
     private TextView pfade;
     private ImageView image; // Von Ihnen weiter einzubinden
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,5 +25,4 @@ public class showImage extends AppCompatActivity {
         pfade.setText(pfadeStrings[0] + "\n" + pfadeStrings[1]);
 
     }
-
 }
