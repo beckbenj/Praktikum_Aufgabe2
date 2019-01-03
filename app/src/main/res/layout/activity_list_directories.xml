@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/backgr"
         android:onClick="startImageActivity"
-        android:text="Show Images" />
+        android:text="Show Images"
+        android:backgroundTint="@android:color/holo_blue_bright"/>
 
     <ListView
         android:id="@android:id/list"
