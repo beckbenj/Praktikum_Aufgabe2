@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:textColor="@color/colorAccent"
     android:checkMark="?android:attr/listChoiceIndicatorSingle"
-    android:drawable="@drawable/list_view_shape"
+    android:background="@drawable/list_view_shape"
+    android:textAlignment="center"
     >
 </CheckedTextView>

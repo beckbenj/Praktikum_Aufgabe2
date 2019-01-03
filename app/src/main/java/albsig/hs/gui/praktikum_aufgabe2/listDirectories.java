@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -25,6 +26,8 @@ public class listDirectories extends AppCompatActivity {
     private ListView list;
     private Button btn_auswahl;
 
+    private String [] menu_titles = {"Beenden"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +36,23 @@ public class listDirectories extends AppCompatActivity {
         setSupportActionBar(toolbar);
         list = findViewById(android.R.id.list);
         btn_auswahl = findViewById(R.id.btn_auswahl);
+        //button disable
+        btn_auswahl.setEnabled(false);
         //Auswahlmoeglichkeiten (hier nur 2) in ArrayAdapter ...
         ArrayAdapter<String> myList = new ArrayAdapter<String>(this, R.layout.list_content, titles);
         //ArrayAdapter mit ListView verknuepfen
         list.setAdapter(myList);
-        list.setBackgroundResource(R.drawable.list_view_shape);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               //button
+                if(!btn_auswahl.isEnabled()){
+                    btn_auswahl.setEnabled(true);
+                }
+            }
+        });
+
+
 
     }
 
@@ -58,6 +73,10 @@ public class listDirectories extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        if (id == R.id.action_exit) {
+            finish();
+            System.exit(0);
         }
 
         return super.onOptionsItemSelected(item);
