@@ -23,6 +23,9 @@ public class listDirectories extends AppCompatActivity {
     private String pathScreenshots = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
     private String pathCamera = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
 
+    private ArrayAdapter<String> myList;
+    private int actualPosition;
+
     private ListView list;
     private Button btn_auswahl;
 
@@ -39,7 +42,7 @@ public class listDirectories extends AppCompatActivity {
         //button disable
         btn_auswahl.setEnabled(false);
         //Auswahlmoeglichkeiten (hier nur 2) in ArrayAdapter ...
-        ArrayAdapter<String> myList = new ArrayAdapter<String>(this, R.layout.list_content, titles);
+        myList = new ArrayAdapter<String>(this, R.layout.list_content, titles);
         //ArrayAdapter mit ListView verknuepfen
         list.setAdapter(myList);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -49,6 +52,7 @@ public class listDirectories extends AppCompatActivity {
                 if(!btn_auswahl.isEnabled()){
                     btn_auswahl.setEnabled(true);
                 }
+                actualPosition = position;
             }
         });
 
@@ -85,14 +89,25 @@ public class listDirectories extends AppCompatActivity {
     public void startImageActivity(View view) {
         Intent startnext;
         startnext = new Intent(listDirectories.this, showImage.class);
+        String path;
 
         // PfadInfo an SubActivity weiterleiten
         // Hier geben Sie spaeter den tatsaechlich ausgewaehlten Pfad
         // an!!
+        if(list.getItemAtPosition(actualPosition)==titles[0]){
+                path = pathCamera;
+        }else if(list.getItemAtPosition(actualPosition)==titles[1]){
+            path = pathScreenshots;
+        }
+        else {
+            path = "NULL";
+        }
+
+
         // Bundle enthaelt die zu uebergebenden Infos ...
         Bundle infos = new Bundle();
         // ... nach put...
-        infos.putStringArray("PATH_INFOS", titles);
+        infos.putString("PATH_INFOS", path);
         startnext.putExtras(infos);
 
         // Activity starten mit Uebergabe der Infos ...
