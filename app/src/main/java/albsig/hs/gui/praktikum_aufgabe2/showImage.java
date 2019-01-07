@@ -48,10 +48,6 @@ public class showImage extends AppCompatActivity {
         if (id == R.id.action_back) {
             finish();
         }
-        if (id == R.id.action_exit) {
-            finish();
-            System.exit(0);
-        }
 
         return super.onOptionsItemSelected(item);
     }
