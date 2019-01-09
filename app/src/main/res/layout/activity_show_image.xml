@@ -12,11 +12,10 @@
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <!--Hierher gehoert das ultra krasse ImageView -->
-
-    <TextView
-        android:id="@+id/showPath"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/image"
+        />
 
 </LinearLayout>
