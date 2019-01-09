@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class listDirectories extends AppCompatActivity {
+public class ListDirectories extends AppCompatActivity {
 
     private final String SCREENSHOT_DIR = "Screenshots";
     private final String CAMERA_DIR = "Camera";
@@ -88,7 +88,7 @@ public class listDirectories extends AppCompatActivity {
 
     public void startImageActivity(View view) {
         Intent startnext;
-        startnext = new Intent(listDirectories.this, showImage.class);
+        startnext = new Intent(ListDirectories.this, ShowImage.class);
         String path;
 
         // PfadInfo an SubActivity weiterleiten

@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class showImage extends AppCompatActivity {
+public class ShowImage extends AppCompatActivity {
     private TextView pfade;
     private ImageView image; // Von Ihnen weiter einzubinden
 
@@ -50,5 +50,15 @@ public class showImage extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void links(){
+       // TODO Bild vorwärts
+        // TODO Wenn letztes Bild erreicht, keine weitere Aktion und beim Bild bleiben
+    }
+
+    public void rechts(){
+        // TODO Bild Rückwärts
+        // TODO Wenn erstes Bild erreicht, keine weitere Aktion und beim Bild bleiben
     }
 }
