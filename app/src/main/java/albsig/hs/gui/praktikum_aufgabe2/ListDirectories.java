@@ -1,8 +1,14 @@
 package albsig.hs.gui.praktikum_aufgabe2;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -33,6 +39,17 @@ public class ListDirectories extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if(checkPermissions() == false) {
+            try {
+                ActivityCompat.requestPermissions((Activity) ListDirectories.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 3);
+            } catch (Exception e){
+                e.printStackTrace();
+                throw e;
+            }
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_directories);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -55,6 +72,7 @@ public class ListDirectories extends AppCompatActivity {
                 actualPosition = position;
             }
         });
+
 
 
 
@@ -112,6 +130,18 @@ public class ListDirectories extends AppCompatActivity {
 
         // Activity starten mit Uebergabe der Infos ...
         this.startActivity(startnext);
+    }
+
+    private boolean checkPermissions() {
+        boolean result = true;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int granted = ContextCompat.checkSelfPermission(ListDirectories.this, Manifest.permission.READ_EXTERNAL_STORAGE);
+            if(granted != PackageManager.PERMISSION_GRANTED) {
+                result = false;
+            }
+            // granted = getApplicationContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        return result;
     }
 }
 
