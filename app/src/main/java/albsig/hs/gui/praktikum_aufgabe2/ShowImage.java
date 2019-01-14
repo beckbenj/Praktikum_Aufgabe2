@@ -1,5 +1,6 @@
 package albsig.hs.gui.praktikum_aufgabe2;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,9 +12,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import static albsig.hs.gui.praktikum_aufgabe2.FileIO.createBitmapFromFile;
+import static albsig.hs.gui.praktikum_aufgabe2.FileIO.loadImagePathNames;
+
 public class ShowImage extends AppCompatActivity {
-    private TextView pfade;
-    private ImageView image; // Von Ihnen weiter einzubinden
+    private ImageView image;
+    private Bitmap bm;
+    private String[] pfade;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +27,11 @@ public class ShowImage extends AppCompatActivity {
         setContentView(R.layout.activity_show_image);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        pfade = findViewById(R.id.showPath);
-        String pfadeStrings =
-                getIntent().getExtras().getString("PATH_INFOS");
-        pfade.setText(pfadeStrings);
+        image = findViewById(R.id.image);
+        String path = getIntent().getExtras().getString("PATH_INFOS");
+        pfade=loadImagePathNames(path);
+        bm = createBitmapFromFile(pfade[0]);
+        image.setImageBitmap(bm);
 
     }
     @Override

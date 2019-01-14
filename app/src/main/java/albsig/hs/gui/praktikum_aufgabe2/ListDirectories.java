@@ -94,9 +94,9 @@ public class ListDirectories extends AppCompatActivity {
         // PfadInfo an SubActivity weiterleiten
         // Hier geben Sie spaeter den tatsaechlich ausgewaehlten Pfad
         // an!!
-        if(list.getItemAtPosition(actualPosition)==titles[0]){
-                path = pathCamera;
-        }else if(list.getItemAtPosition(actualPosition)==titles[1]){
+        if(list.getItemAtPosition(actualPosition)==titles[1]){
+                path = pathCamera + "/" + CAMERA_DIR;
+        }else if(list.getItemAtPosition(actualPosition)==titles[0]){
             path = pathScreenshots;
         }
         else {
