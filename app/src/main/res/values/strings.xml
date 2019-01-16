@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Praktikum_Aufgabe2</string>
+    <string name="app_name">Guckst Du</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_show_image">show_image</string>
+    <string name="title_activity_show_image">Guckst Du immer noch</string>
     <string name="action_exit">Exit</string>
     <string name="action_back">Back</string>
 </resources>

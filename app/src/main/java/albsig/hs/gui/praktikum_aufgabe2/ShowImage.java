@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,8 @@ public class ShowImage extends AppCompatActivity {
     private ImageView image;
     private Bitmap bm;
     private String[] pfade;
+    private int count = 0;
+    private GestureDetector gdetect;
 
 
     @Override
@@ -29,9 +32,25 @@ public class ShowImage extends AppCompatActivity {
         setSupportActionBar(toolbar);
         image = findViewById(R.id.image);
         String path = getIntent().getExtras().getString("PATH_INFOS");
-        pfade=loadImagePathNames(path);
-        bm = createBitmapFromFile(pfade[0]);
-        image.setImageBitmap(bm);
+
+        //Gesten-Detektor erzeugne und mit seinem Listener verknuepfen
+        gdetect = new GestureDetector(this, new FlingImageListener(this));
+
+        //Textfeld mit seinem Touch-Listener verknüpfen. Der Touch-Listener seinerseit wird mit dem Gesten-Detektor verknüpft
+        image.setOnTouchListener(new OnTouchListener(gdetect));
+
+
+        pfade = loadImagePathNames(path);
+
+        if(pfade == null){
+            //TODO alerfenster
+            finish();
+        }
+        else {
+
+            bm = createBitmapFromFile(pfade[count]);
+            image.setImageBitmap(bm);
+        }
 
     }
     @Override
@@ -60,12 +79,24 @@ public class ShowImage extends AppCompatActivity {
     }
 
     public void links(){
-       // TODO Bild vorwärts
-        // TODO Wenn letztes Bild erreicht, keine weitere Aktion und beim Bild bleiben
+       if (count < pfade.length-1) {
+           count++;
+       }
+       else{
+           count = 0;
+       }
+        bm = createBitmapFromFile(pfade[count]);
+        image.setImageBitmap(bm);
     }
 
     public void rechts(){
-        // TODO Bild Rückwärts
-        // TODO Wenn erstes Bild erreicht, keine weitere Aktion und beim Bild bleiben
+        if (count >0) {
+            count --;
+        }
+        else{
+            count = pfade.length-1;
+        }
+        bm = createBitmapFromFile(pfade[count]);
+        image.setImageBitmap(bm);
     }
 }

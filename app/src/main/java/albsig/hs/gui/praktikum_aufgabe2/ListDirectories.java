@@ -115,7 +115,7 @@ public class ListDirectories extends AppCompatActivity {
         if(list.getItemAtPosition(actualPosition)==titles[1]){
                 path = pathCamera + "/" + CAMERA_DIR;
         }else if(list.getItemAtPosition(actualPosition)==titles[0]){
-            path = pathScreenshots;
+            path = pathScreenshots + "/" + SCREENSHOT_DIR;
         }
         else {
             path = "NULL";
@@ -139,7 +139,6 @@ public class ListDirectories extends AppCompatActivity {
             if(granted != PackageManager.PERMISSION_GRANTED) {
                 result = false;
             }
-            // granted = getApplicationContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
         return result;
     }
