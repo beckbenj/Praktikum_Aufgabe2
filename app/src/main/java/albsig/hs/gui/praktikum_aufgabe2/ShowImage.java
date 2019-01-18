@@ -1,9 +1,11 @@
 package albsig.hs.gui.praktikum_aufgabe2;
 
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
@@ -41,16 +43,8 @@ public class ShowImage extends AppCompatActivity {
 
 
         pfade = loadImagePathNames(path);
-
-        if(pfade == null){
-            //TODO alerfenster
-            finish();
-        }
-        else {
-
             bm = createBitmapFromFile(pfade[count]);
             image.setImageBitmap(bm);
-        }
 
     }
     @Override
