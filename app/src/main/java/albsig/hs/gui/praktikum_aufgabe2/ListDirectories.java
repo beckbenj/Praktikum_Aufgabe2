@@ -136,8 +136,8 @@ public class ListDirectories extends AppCompatActivity {
         }
         else{
             AlertDialog alertDialog = new AlertDialog.Builder(ListDirectories.this).create();
-            alertDialog.setTitle("Developer");
-            alertDialog.setMessage("Function not implemented!");
+            alertDialog.setTitle("Info");
+            alertDialog.setMessage("No such Directory!");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
