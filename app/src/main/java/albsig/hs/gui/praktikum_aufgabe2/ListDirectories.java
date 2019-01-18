@@ -2,6 +2,7 @@ package albsig.hs.gui.praktikum_aufgabe2;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -118,18 +120,33 @@ public class ListDirectories extends AppCompatActivity {
             path = pathScreenshots + "/" + SCREENSHOT_DIR;
         }
         else {
-            path = "NULL";
+            path = null;
         }
 
 
         // Bundle enthaelt die zu uebergebenden Infos ...
         Bundle infos = new Bundle();
         // ... nach put...
-        infos.putString("PATH_INFOS", path);
-        startnext.putExtras(infos);
+        if (path != null){
+            infos.putString("PATH_INFOS", path);
+            startnext.putExtras(infos);
 
-        // Activity starten mit Uebergabe der Infos ...
-        this.startActivity(startnext);
+            // Activity starten mit Uebergabe der Infos ...
+            this.startActivity(startnext);
+        }
+        else{
+            AlertDialog alertDialog = new AlertDialog.Builder(ListDirectories.this).create();
+            alertDialog.setTitle("War wohl nix!");
+            alertDialog.setMessage("No Pictures available");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }
+
     }
 
     private boolean checkPermissions() {
