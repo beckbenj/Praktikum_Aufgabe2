@@ -43,8 +43,25 @@ public class ShowImage extends AppCompatActivity {
 
 
         pfade = loadImagePathNames(path);
+        if (pfade.length !=0){
             bm = createBitmapFromFile(pfade[count]);
             image.setImageBitmap(bm);
+        }
+        else{
+            AlertDialog alertDialog = new AlertDialog.Builder(ShowImage.this).create();
+            alertDialog.setTitle("War Wohl nix!");
+            alertDialog.setMessage("Hier geids koine Bilder!");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            finish();
+                        }
+                    });
+            alertDialog.show();
+
+        }
+
 
     }
     @Override

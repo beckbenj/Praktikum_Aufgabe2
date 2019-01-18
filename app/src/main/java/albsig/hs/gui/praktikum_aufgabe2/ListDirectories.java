@@ -136,8 +136,8 @@ public class ListDirectories extends AppCompatActivity {
         }
         else{
             AlertDialog alertDialog = new AlertDialog.Builder(ListDirectories.this).create();
-            alertDialog.setTitle("War wohl nix!");
-            alertDialog.setMessage("No Pictures available");
+            alertDialog.setTitle("Developer");
+            alertDialog.setMessage("Function not implemented!");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
